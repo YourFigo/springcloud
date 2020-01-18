@@ -7,14 +7,20 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="http_client_demo" />
+        <module name="figo_service_customer" />
+        <module name="figo_service_provider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="figo_service_customer" target="1.8" />
+      <module name="figo_service_provider" target="1.8" />
       <module name="http_client_demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="figo_service_customer" options="-parameters" />
+      <module name="figo_service_provider" options="-parameters" />
       <module name="http_client_demo" options="-parameters" />
     </option>
   </component>

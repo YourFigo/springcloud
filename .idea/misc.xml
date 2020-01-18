@@ -4,6 +4,8 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/http_client_demo/pom.xml" />
+        <option value="$PROJECT_DIR$/figo_service_provider/pom.xml" />
+        <option value="$PROJECT_DIR$/figo_service_customer/pom.xml" />
       </list>
     </option>
   </component>
