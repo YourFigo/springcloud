@@ -20,6 +20,7 @@ public class HttpTests {
 
     CloseableHttpClient httpClient;
 
+    // 序列化与反序列化
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     @Before
@@ -48,9 +49,11 @@ public class HttpTests {
         HttpGet request = new HttpGet("http://localhost:8888/user/42");
         String response = this.httpClient.execute(request, new BasicResponseHandler());
         System.out.println(response);
+        // 将json字符串序列化为 bean
         User user = MAPPER.readValue(response, User.class);
         System.out.println(user);
-        String usetToString = MAPPER.writeValueAsString(user);
-        System.out.println(usetToString);
+        // 将bean反序列化为json字符串
+        String usertToString = MAPPER.writeValueAsString(user);
+        System.out.println(usertToString);
     }
 }
