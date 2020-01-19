@@ -34,6 +34,5 @@ public class UserController {
         List<ServiceInstance> instances = discoveryClient.getInstances("service_provider");
         ServiceInstance serviceInstance = instances.get(0);
         return this.restTemplate.getForObject("http://" + serviceInstance.getHost() +":"+serviceInstance.getPort()+"/user/" + id, User.class);
-//        return this.restTemplate.getForObject("http://localhost:8081/user/" + id, User.class);
     }
 }
