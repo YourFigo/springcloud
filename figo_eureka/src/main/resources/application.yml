@@ -1,12 +1,12 @@
 server:
-  port: 10087
+  port: 10086
 spring:
   application:
-    name: figo_eureka  #作为微服务的名称
+    name: figo-eureka  #浣滀负寰湇鍔＄殑鍚嶇О
 eureka:
   client:
     service-url:
-      # defaultZone: http://localhost:${server.port}/eureka
-      defaultZone: http://localhost:10086/eureka
+       defaultZone: http://localhost:${server.port}/eureka
+#      defaultZone: http://localhost:10086/eureka
   server:
-    eviction-interval-timer-in-ms: 5000  #失效剔除时间
+    eviction-interval-timer-in-ms: 5000  #澶辨晥鍓旈櫎鏃堕棿

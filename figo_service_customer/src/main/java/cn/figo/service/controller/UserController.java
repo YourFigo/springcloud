@@ -24,15 +24,19 @@ public class UserController {
     @Autowired
     private RestTemplate restTemplate;
 
-    // 拉去服务提供方的所有服务列表
-    @Autowired
-    private DiscoveryClient discoveryClient;
+    // 拉取服务提供方的所有服务列表
+//    @Autowired
+//    private DiscoveryClient discoveryClient;
 
     @GetMapping
     @ResponseBody
     private User queryUserById(@RequestParam("id") Long id){
-        List<ServiceInstance> instances = discoveryClient.getInstances("service_provider");
-        ServiceInstance serviceInstance = instances.get(0);
-        return this.restTemplate.getForObject("http://" + serviceInstance.getHost() +":"+serviceInstance.getPort()+"/user/" + id, User.class);
+//        List<ServiceInstance> instances = discoveryClient.getInstances("service_provider");
+//        ServiceInstance serviceInstance = instances.get(0);
+//        return this.restTemplate.getForObject("http://" + serviceInstance.getHost() +":"+serviceInstance.getPort()+"/user/" + id, User.class);
+
+//        开启@LoadBalanced后，不能直接访问提供方的具体主机名和端口号，否则报错 java.lang.IllegalStateException: No instances available for localhost
+//        服务名不要使用下划线，否则报错 Request URI does not contain a valid hostname: http://service_provider/user/42
+        return this.restTemplate.getForObject("http://service-provider/user/" + id,User.class);
     }
 }
