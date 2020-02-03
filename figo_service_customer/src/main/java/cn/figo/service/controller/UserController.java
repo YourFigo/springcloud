@@ -1,6 +1,7 @@
 package cn.figo.service.controller;
 
 import cn.figo.service.pojo.User;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -30,13 +31,19 @@ public class UserController {
 
     @GetMapping
     @ResponseBody
-    private User queryUserById(@RequestParam("id") Long id){
+    @HystrixCommand(fallbackMethod = "queryUserByIdFallback") //声明熔断的方法
+    private String queryUserById(@RequestParam("id") Long id){
 //        List<ServiceInstance> instances = discoveryClient.getInstances("service_provider");
 //        ServiceInstance serviceInstance = instances.get(0);
 //        return this.restTemplate.getForObject("http://" + serviceInstance.getHost() +":"+serviceInstance.getPort()+"/user/" + id, User.class);
 
 //        开启@LoadBalanced后，不能直接访问提供方的具体主机名和端口号，否则报错 java.lang.IllegalStateException: No instances available for localhost
 //        服务名不要使用下划线，否则报错 Request URI does not contain a valid hostname: http://service_provider/user/42
-        return this.restTemplate.getForObject("http://service-provider/user/" + id,User.class);
+        return this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
+    }
+
+    // 服务降级逻辑
+    private String queryUserByIdFallback(Long id){
+        return "服务器正忙，请稍后再试";
     }
 }
