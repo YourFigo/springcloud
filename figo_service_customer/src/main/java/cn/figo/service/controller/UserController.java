@@ -1,6 +1,7 @@
 package cn.figo.service.controller;
 
 import cn.figo.service.pojo.User;
+import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -20,6 +21,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("customer/user")
+@DefaultProperties(defaultFallback = "fallBackMethod")
 public class UserController {
 
     @Autowired
@@ -31,8 +33,8 @@ public class UserController {
 
     @GetMapping
     @ResponseBody
-//    @HystrixCommand(fallbackMethod = "queryUserByIdFallback") //用来声明一个降级逻辑的方法
-    private String queryUserById(@RequestParam("id") Long id){
+    @HystrixCommand
+    public String queryUserById(@RequestParam("id") Long id){
 //        List<ServiceInstance> instances = discoveryClient.getInstances("service_provider");
 //        ServiceInstance serviceInstance = instances.get(0);
 //        return this.restTemplate.getForObject("http://" + serviceInstance.getHost() +":"+serviceInstance.getPort()+"/user/" + id, User.class);
@@ -44,7 +46,11 @@ public class UserController {
     }
 
     // 服务降级逻辑
-    private String queryUserByIdFallback(Long id){
+    public String queryUserByIdFallback(Long id){
+        return "服务器正忙，请稍后再试";
+    }
+
+    public String fallBackMethod(){
         return "服务器正忙，请稍后再试";
     }
 }
