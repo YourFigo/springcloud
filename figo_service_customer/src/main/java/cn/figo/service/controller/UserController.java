@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping
     @ResponseBody
-    @HystrixCommand(fallbackMethod = "queryUserByIdFallback") //声明熔断的方法
+//    @HystrixCommand(fallbackMethod = "queryUserByIdFallback") //用来声明一个降级逻辑的方法
     private String queryUserById(@RequestParam("id") Long id){
 //        List<ServiceInstance> instances = discoveryClient.getInstances("service_provider");
 //        ServiceInstance serviceInstance = instances.get(0);
@@ -39,7 +39,8 @@ public class UserController {
 
 //        开启@LoadBalanced后，不能直接访问提供方的具体主机名和端口号，否则报错 java.lang.IllegalStateException: No instances available for localhost
 //        服务名不要使用下划线，否则报错 Request URI does not contain a valid hostname: http://service_provider/user/42
-        return this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
+        String user = this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
+        return user;
     }
 
     // 服务降级逻辑
