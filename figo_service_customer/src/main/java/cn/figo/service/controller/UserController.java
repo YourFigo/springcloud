@@ -41,6 +41,10 @@ public class UserController {
 
 //        开启@LoadBalanced后，不能直接访问提供方的具体主机名和端口号，否则报错 java.lang.IllegalStateException: No instances available for localhost
 //        服务名不要使用下划线，否则报错 Request URI does not contain a valid hostname: http://service_provider/user/42
+
+        if (id == 1){
+            throw new RuntimeException();
+        }
         String user = this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
         return user;
     }
