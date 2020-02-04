@@ -21,11 +21,11 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("customer/user")
-@DefaultProperties(defaultFallback = "fallBackMethod")
+//@DefaultProperties(defaultFallback = "fallBackMethod")
 public class UserController {
 
-    @Autowired
-    private RestTemplate restTemplate;
+/*    @Autowired
+    private RestTemplate restTemplate;*/
 
     // 拉取服务提供方的所有服务列表
 //    @Autowired
@@ -42,19 +42,20 @@ public class UserController {
 //        开启@LoadBalanced后，不能直接访问提供方的具体主机名和端口号，否则报错 java.lang.IllegalStateException: No instances available for localhost
 //        服务名不要使用下划线，否则报错 Request URI does not contain a valid hostname: http://service_provider/user/42
 
-        if (id == 1){
+/*        if (id == 1){
             throw new RuntimeException();
-        }
-        String user = this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
-        return user;
+        }*/
+//        String user = this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
+
+        return null;
     }
 
-    // 服务降级逻辑
+/*    // 服务降级逻辑
     public String queryUserByIdFallback(Long id){
         return "服务器正忙，请稍后再试";
     }
 
     public String fallBackMethod(){
         return "服务器正忙，请稍后再试";
-    }
+    }*/
 }
