@@ -38,8 +38,7 @@ public class UserController {
 
     @GetMapping
     @ResponseBody
-    @HystrixCommand
-    public String queryUserById(@RequestParam("id") Long id){
+    public User queryUserById(@RequestParam("id") Long id){
 //        List<ServiceInstance> instances = discoveryClient.getInstances("service_provider");
 //        ServiceInstance serviceInstance = instances.get(0);
 //        return this.restTemplate.getForObject("http://" + serviceInstance.getHost() +":"+serviceInstance.getPort()+"/user/" + id, User.class);
@@ -52,7 +51,7 @@ public class UserController {
         }*/
 //        String user = this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
 
-        return this.userClient.queryUserById(id).toString();
+        return this.userClient.queryUserById(id);
     }
 
 /*    // 服务降级逻辑
