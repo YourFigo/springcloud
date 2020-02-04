@@ -1,5 +1,6 @@
 package cn.figo.service.controller;
 
+import cn.figo.service.client.UserClient;
 import cn.figo.service.pojo.User;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
@@ -31,6 +32,10 @@ public class UserController {
 //    @Autowired
 //    private DiscoveryClient discoveryClient;
 
+
+    @Autowired
+    private UserClient userClient;
+
     @GetMapping
     @ResponseBody
     @HystrixCommand
@@ -47,7 +52,7 @@ public class UserController {
         }*/
 //        String user = this.restTemplate.getForObject("http://service-provider/user/" + id, String.class);
 
-        return null;
+        return this.userClient.queryUserById(id).toString();
     }
 
 /*    // 服务降级逻辑
