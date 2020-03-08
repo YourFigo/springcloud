@@ -1,5 +1,11 @@
 server:
-  port: 10010 #����˿�
+  port: 10010
 spring:
   application:
-    name: api-gateway #ָ��������
+    name: figo-zuul
+# 编写路由规则
+zuul:
+  routes:
+    service-provider: #路由名称，可以随便写，习惯上是服务名
+      path: /service-provider/** # 这里是映射路径
+      url: http://127.0.0.1:8081 # 映射路径对应的实际url地址
