@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/figo_eureka/figo_eureka.iml" filepath="$PROJECT_DIR$/figo_eureka/figo_eureka.iml" />
       <module fileurl="file://$PROJECT_DIR$/figo_service_customer/figo_service_customer.iml" filepath="$PROJECT_DIR$/figo_service_customer/figo_service_customer.iml" />
       <module fileurl="file://$PROJECT_DIR$/figo_service_provider/figo_service_provider.iml" filepath="$PROJECT_DIR$/figo_service_provider/figo_service_provider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/figo_zuul/figo_zuul.iml" filepath="$PROJECT_DIR$/figo_zuul/figo_zuul.iml" />
       <module fileurl="file://$PROJECT_DIR$/http_client_demo/http_client_demo.iml" filepath="$PROJECT_DIR$/http_client_demo/http_client_demo.iml" />
     </modules>
   </component>
