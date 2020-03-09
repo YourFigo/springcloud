@@ -4,12 +4,12 @@ spring:
   application:
     name: figo-zuul
 # 编写路由规则
-zuul:
-  routes:
-    service-provider: #路由名称，可以随便写，习惯上是服务名
-      path: /service-provider/** # 这里是映射路径
+#zuul:
+  #routes:
+    #service-provider: /service-provider/** #路由名称，可以随便写，习惯上是服务名
+      # path: /service-provider/** # 这里是映射路径
       # url: http://localhost:8081 # 映射路径对应的实际url地址
-      serviceId: service-provider
+      # serviceId: service-provider
 eureka:
   client:
     service-url:
