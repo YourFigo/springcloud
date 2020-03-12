@@ -16,7 +16,7 @@ public class LoginFilter extends ZuulFilter {
      */
     @Override
     public String filterType() {
-        return null;
+        return "pre";
     }
 
     /**
@@ -25,16 +25,16 @@ public class LoginFilter extends ZuulFilter {
      */
     @Override
     public int filterOrder() {
-        return 0;
+        return 10;
     }
 
     /**
-     * 判断该过滤器是否会执行，放回一个boolean值
+     * 判断该过滤器是否会执行（是否执行run方法），放回一个boolean值,true就会执行run方法
      * @return
      */
     @Override
     public boolean shouldFilter() {
-        return false;
+        return true;
     }
 
     /**
@@ -44,6 +44,15 @@ public class LoginFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
+
+        // 初始化context上下文对象，servlet spring
+
+
+        //获取request对象
+
+        //获取参数
+
+        // 返回值null，就代表该过滤器啥都不做
         return null;
     }
 }
