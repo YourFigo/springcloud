@@ -47,6 +47,7 @@ public class LoginFilter extends ZuulFilter {
     /**
      * 过滤器的具体业务逻辑
      * 访问 http://localhost:10010/service-provider/user/42?token=xxx
+     *      http://localhost:10010/service-customer/customer/user?id=42
      * @return
      * @throws ZuulException
      */
