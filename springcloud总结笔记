@@ -1,4 +1,12 @@
 SpringCloud总结
 SpringCloud：在springboot的基础上构建微服务框架。
 	1、引入组件的启动器 2、覆盖默认配置 3、在引导类上添加相应的注解
+eureka：注册中心，服务的注册于发现
+	服务端：
+		1、引入服务端启动器：eureka-server
+		2、添加配置spring.application.name、服务名；eureka.client.service-url.defaultZone http://localhost:10086/eureka、剔除无效连接的间隔时间、关闭自我保护
+		3、@EnableEurekaServer 开启eureka服务端功能
+	客户端：
+		1、引入启动器：eureka-client
+		2、添加配置：spring.application.name、eureka.client.service-url.defaultZone、心跳时间、过期时间、是否注册给eureka容器。
 
