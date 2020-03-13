@@ -9,4 +9,7 @@ eureka：注册中心，服务的注册于发现
 	客户端：
 		1、引入启动器：eureka-client
 		2、添加配置：spring.application.name、eureka.client.service-url.defaultZone、心跳时间、过期时间、是否注册给eureka容器。
-
+Ribbon：负载均衡组件
+	eureka、feign以及zuul已集成。
+	配置负载均衡策略：service-provider（服务名）.ribbon.NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule（负载均衡策略全路径）
+	@LoadBalanced 在RestTemplate的@Bean方法上
