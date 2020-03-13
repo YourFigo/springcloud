@@ -1,0 +1,4 @@
+SpringCloud总结
+SpringCloud：在springboot的基础上构建微服务框架。
+	1、引入组件的启动器 2、覆盖默认配置 3、在引导类上添加相应的注解
+
