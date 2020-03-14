@@ -4,12 +4,24 @@ SpringCloud：在springboot的基础上构建微服务框架。
 eureka：注册中心，服务的注册于发现
 	服务端：
 		1、引入服务端启动器：eureka-server
-		2、添加配置spring.application.name、服务名；eureka.client.service-url.defaultZone http://localhost:10086/eureka、剔除无效连接的间隔时间、关闭自我保护
+		2、添加配置
+			spring.application.name 服务名
+			eureka.client.service-url.defaultZone http://localhost:10086/eureka
+			剔除无效连接的间隔时间 eureka.server.eviction-interval-timer-in-ms
+			关闭自我保护 eureka.server.enable-self-preservation
 		3、@EnableEurekaServer 开启eureka服务端功能
 	客户端：
 		1、引入启动器：eureka-client
-		2、添加配置：spring.application.name、eureka.client.service-url.defaultZone、心跳时间、过期时间、是否注册给eureka容器。
+		2、添加配置
+			spring.application.name
+			eureka.client.service-url.defaultZone
+			心跳时间 eureka.instance.lease-renewal-interval-in-seconds
+			过期时间 eureka.instance.lease-expiration-duration-in-seconds
+			是否注册给eureka容器 eureka.client.register-with-eureka
+			是否拉取服务列表 eureka.client.fetch-registry
+			拉取服务的间隔时间 eureka.client.registry-fetch-interval-seconds
+		3、启用eureka客户端：@EnableDiscoveryClient
 Ribbon：负载均衡组件
 	eureka、feign以及zuul已集成。
-	配置负载均衡策略：service-provider（服务名）.ribbon.NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule（负载均衡策略全路径）
+	配置负载均衡策略：<service-provider（服务名）>.ribbon.NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule（负载均衡策略全路径）
 	@LoadBalanced 在RestTemplate的@Bean方法上
