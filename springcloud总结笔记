@@ -45,3 +45,8 @@ hystrix：容错组件
 	3、half open：半开状态
 		释放部分请求通过，如果正常就进入close状态，如果不正常就进入open状态
 		触发：休眠时间之后
+feign：远程调用组件，集成ribbon和hystrix
+	1、引入feign的启动器
+	2、开启熔断：feign.hystrix.enable=true
+	3、开启feign的功能：@EnableFeignClients
+	4、实现：定义一个接口，使用注解@FeignClient(value="服务名", fallback=实现类.class)，方法上的注解使用的都是springMVC的注解
