@@ -50,3 +50,31 @@ feign：远程调用组件，集成ribbon和hystrix
 	2、开启熔断：feign.hystrix.enable=true
 	3、开启feign的功能：@EnableFeignClients
 	4、实现：定义一个接口，使用注解@FeignClient(value="服务名", fallback=实现类.class)，方法上的注解使用的都是springMVC的注解
+zuul：网关组件，有路由和过滤器功能
+    1、引入启动器
+	2、配置
+		路由前缀：zuul.prefix
+		四种路由配置方式
+			1、
+			zuul.routes.<路由名>.path=/service-provider/**
+			zuul.routes.<路由名>.url=http://localhost:8081
+			2、
+			zuul.routes.<路由名>.path=/service-provider/**
+			zuul.routes.<路由名>.serviceId=service-provider
+			3、
+			zuul.routes.<路由名:服务名>=/service-provider/**
+			4、
+			默认服务的入口就是以服务名为前缀（不配置）
+	3、开启zuul网关组件 @EnableZuulProxy
+	4、自定义过滤器
+		接口：IZuulFilter，默认的抽象实现类：ZuulFilter
+		filterType：pre、post、route、error
+		filterOrder：执行顺序，返回值越小优先级越高
+		shouldFilter：是否执行run方法，true为执行
+		run：过滤器的具体逻辑
+		四种执行顺序：
+			pre-->route-->post
+			异常：
+				pre或者route出现异常，直接执行error-->post
+				post出现异常，error-->响应
+				error出现异常，error-->post
