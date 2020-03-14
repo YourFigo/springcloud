@@ -30,6 +30,7 @@ hystrix：容错组件
 	1、引入hystrix启动器
 	2、添加配置，超时时间的配置：hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000
 	3、启用熔断组件 @EnableCircuitBreaker
+	组合注解：@SpringCloudApplication，包含了@SpringBootApplication和@EnableDiscveryClient
 	局部熔断：返回值和参数列表和被熔断的方法一致
 		在被熔断的方法上 @HystrixCommand(fallbackMethod="熔断方法名")
 	全局熔断：返回值和被熔断的方法返回值一致，不能有参数列表
