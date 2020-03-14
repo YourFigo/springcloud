@@ -36,4 +36,12 @@ hystrix：容错组件
 		在类上 @DefaultProperties(defaultFallbck="全局熔断方法名")
 		在具体的被熔断方法上 @HystrixCommand
 熔断：
-	1、
+	1、close：关闭状态
+		所有请求都正常访问
+	2、open：打开状态
+		所有请求都无法访问
+		触发：连续失败的比例大于50%或者失败次数不少于20
+		维持5s的休眠时间
+	3、half open：半开状态
+		释放部分请求通过，如果正常就进入close状态，如果不正常就进入open状态
+		触发：休眠时间之后
