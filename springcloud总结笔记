@@ -25,3 +25,10 @@ Ribbon：负载均衡组件
 	eureka、feign以及zuul已集成。
 	配置负载均衡策略：<service-provider（服务名）>.ribbon.NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule（负载均衡策略全路径）
 	@LoadBalanced 在RestTemplate的@Bean方法上
+hystrix：容错组件
+降级：
+	1、引入hystrix启动器
+	2、添加配置，超时时间的配置：hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 6000
+	3、启用熔断组件
+熔断：
+	1、
